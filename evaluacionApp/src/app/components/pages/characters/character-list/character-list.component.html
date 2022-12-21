@@ -1,0 +1,49 @@
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/"
+      >Evaluacion<span class="text-danger">APP</span></a
+    >
+        <input #inputSearch autofocus type="text" class="form-control-lg" placeholder="Nombre..." [(ngModel)]="name" />
+        <select name="gender" [(ngModel)]="gender">
+          <option value="">Selecione Genero</option>
+          <option value="female">Femenino</option>
+          <option value="male">Masculino</option>
+          <option value="genderless">Sin genero</option>
+          <option value="unknown">Desconocido</option>
+        </select>
+        <select name="status" [(ngModel)]="status">
+          <option value="">Selecione estado</option>
+          <option value="alive">Vivo</option>
+          <option value="dead">Muerto</option>
+          <option value="unknown">Desconocido</option>
+        </select>
+        <button (click)="filtrar()">Filtrar</button>
+    </div>
+  </nav>
+</header>
+<div class="row">
+    <div class="col-xs-4 col-sm-4 col-md-4" *ngFor="let character of characters">
+       <div class="card">
+            <div class="image">
+                <a [routerLink]="['/character-details', character.id]">
+                    <img 
+                    [src]="character.image"
+                    [alt]="character.name"
+                    class="card-img-top"
+                    />
+                </a>
+            </div>
+        <div class="card-inner">
+            <div class="header">
+            <a [routerLink]="['/character-details', character.id]">
+            <h2>{{character.name}}</h2>
+            </a>
+            <h4 class="text-muted">{{character.gender}}</h4>
+            <small class="text-muted">{{character.status}}</small>
+            </div>
+        </div>
+       </div>
+    </div>
+    
